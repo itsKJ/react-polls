@@ -11,7 +11,7 @@ const themes = {
   black: ['#303030', '#303030', '#3030303B'],
   white: ['#ffffff', '#ffffff', '#ffffff3B'],
   cyan: ['#00BCDD', '#00BCDD', '#00BCDD3B'],
-  green: ['#218400', '#218400', '#B6FF9E']
+  green: ['#00600f', '#00600f', 'rgba(152, 224, 84, 0.551)']
 }
 
 export default class Poll extends Component {
@@ -59,7 +59,7 @@ export default class Poll extends Component {
   checkVote = () => {
     const { question } = this.props
     const storage = this.getStoragePolls()
-    const answer = storage.filter(answer => answer.question === question && answer.url === location.href)
+    const answer = storage.filter(answer => answer.question === question)
 
     if (answer.length) {
       this.setPollVote(answer[0].option)
@@ -105,11 +105,6 @@ export default class Poll extends Component {
     const { question, onVote, noStorage } = this.props
     if (!noStorage) {
       const storage = this.getStoragePolls()
-      storage.push({
-        url: location.href,
-        question: question,
-        option: answer
-      })
       localStorage.setItem('react-polls', JSON.stringify(storage))
     }
 
@@ -148,8 +143,20 @@ export default class Poll extends Component {
     const colors = this.obtainColors(customStyles.theme)
 
     return (
-      <article className={`${animate.animated} ${animate.fadeIn} ${animate.faster} ${styles.poll}`} style={{ textAlign: customStyles.align, alignItems: this.alignPoll(customStyles.align) }}>
-        <h3 className={styles.question} style={{ borderWidth: customStyles.questionSeparator ? '1px' : '0', alignSelf: customStyles.questionSeparatorWidth === 'question' ? 'center' : 'stretch', fontWeight: customStyles.questionBold ? 'bold' : 'normal', color: customStyles.questionColor }}>{question}</h3>
+      <article
+        className={`${animate.animated} ${animate.fadeIn} ${animate.faster} ${styles.poll}`}
+        style={{ textAlign: customStyles.align, alignItems: this.alignPoll(customStyles.align) }}
+      >
+        <h3
+          className={styles.question}
+          style={{
+            borderWidth: customStyles.questionSeparator ? '1px' : '0', alignSelf: customStyles.questionSeparatorWidth === 'question' ? 'center' : 'stretch',
+            fontWeight: customStyles.questionBold ? 'bold' : 'normal',
+            color: customStyles.questionColor
+          }}
+        >
+          {question}
+        </h3>
         <ul className={styles.answers}>
           {answers.map(answer => (
             <li key={answer.option}>
@@ -158,11 +165,11 @@ export default class Poll extends Component {
                   <div className={styles.fill} style={{ width: this.calculatePercent(answer.votes, totalVotes), backgroundColor: colors[2] }} />
                   <div className={styles.labels}>
                     <span className={styles.percent} style={{ color: colors[0] }}>{this.calculatePercent(answer.votes, totalVotes)}</span>
-                    <span className={`${styles.answer} ${answer.option === poll.option ? styles.vote : ''}`} style={{ color: colors[0] }}>{answer.option}</span>
+                    <span className={`${styles.answer} ${answer.option === poll.option ? styles.vote : ''}`} style={{ color: colors[0], textAlign: 'right' }}>{answer.option}</span>
                   </div>
                 </div>
               ) : (
-                <button className={`${animate.animated} ${animate.fadeIn} ${animate.faster} ${styles.option} ${styles[customStyles.theme]}`} style={{ color: colors[0], borderColor: colors[1] }} type='button' onClick={() => this.vote(answer.option)}>
+                <button className={`${animate.animated} ${animate.fadeIn} ${animate.faster} ${styles.option} ${styles[customStyles.theme]}`} style={{ color: colors[0], borderColor: colors[1], textAlign: 'left' }} type='button' onClick={() => this.vote(answer.option)}>
                   {answer.option}
                 </button>
               )}

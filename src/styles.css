@@ -37,9 +37,10 @@
   margin: 5px 0;
 }
 
-.poll .answers .option, .poll .answers .result {
+.poll .answers .option,
+.poll .answers .result {
   font-weight: bold;
-  border: 2px solid #000000;
+  border: 1px solid #000000;
   border-radius: 5px;
   cursor: pointer;
   width: 100%;
@@ -53,28 +54,34 @@
   background-color: inherit;
 }
 
-.poll .answers .option:hover, .poll .answers .option:active {
-	background: #3030303B;
+.poll .answers .option:hover,
+.poll .answers .option:active {
+  background: #3030303B;
 }
 
-.poll .answers .option.purple:hover, .poll .answers .option.purple:active {
-	background: #6d4b943B;
+.poll .answers .option.purple:hover,
+.poll .answers .option.purple:active {
+  background: #6d4b943B;
 }
 
-.poll .answers .option.red:hover, .poll .answers .option.red:active {
-	background: #FF28283B;
+.poll .answers .option.red:hover,
+.poll .answers .option.red:active {
+  background: #FF28283B;
 }
 
-.poll .answers .option.blue:hover, .poll .answers .option.blue:active {
-	background: #283EFF3B;
+.poll .answers .option.blue:hover,
+.poll .answers .option.blue:active {
+  background: #283EFF3B;
 }
 
-.poll .answers .option.white:hover, .poll .answers .option.white:active {
-	background: #ffffff3B;
+.poll .answers .option.white:hover,
+.poll .answers .option.white:active {
+  background: #ffffff3B;
 }
 
-.poll .answers .option.cyan:hover, .poll .answers .option.cyan:active {
-	background: #00BCDD3B;
+.poll .answers .option.cyan:hover,
+.poll .answers .option.cyan:active {
+  background: #00BCDD3B;
 }
 
 .poll .answers .result {
