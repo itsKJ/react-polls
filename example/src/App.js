@@ -17,8 +17,8 @@ const pollStyles1 = {
   questionSeparatorWidth: 'question',
   questionBold: true,
   questionColor: '#303030',
-  align: 'center',
-  theme: 'purple'
+  align: 'left',
+  theme: 'green'
 }
 
 
@@ -34,7 +34,7 @@ const pollStyles2 = {
   questionBold: false,
   questionColor: '#4F70D6',
   align: 'center',
-  theme: 'blue'
+  theme: 'green'
 }
 
 
@@ -85,11 +85,17 @@ export default class App extends Component {
           <h1 className='name'>react-polls</h1>
         </header>
         <main className='main'>
-          <div>
+          {/* <div>
             <Poll question={pollQuestion1} answers={pollAnswers1} onVote={voteAnswer => this.handleVote(voteAnswer, pollAnswers1, 1)} customStyles={pollStyles1} noStorage />
           </div>
           <div>
             <Poll question={pollQuestion2} answers={pollAnswers2} onVote={voteAnswer => this.handleVote(voteAnswer, pollAnswers2, 2)} customStyles={pollStyles2} noStorage disableInputs />
+          </div> */}
+        </main>
+        <br />
+        <main className='main' style={{ width: '600px' }}>
+          <div style={{ width: '1000px' }}>
+            <Poll question={pollQuestion2} answers={pollAnswers2} onVote={voteAnswer => this.handleVote(voteAnswer, pollAnswers2, 2)} customStyles={pollStyles2} noStorage />
           </div>
         </main>
 

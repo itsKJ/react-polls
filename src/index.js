@@ -158,18 +158,34 @@ export default class Poll extends Component {
           {question}
         </h3>
         <ul className={styles.answers}>
-          {answers.map(answer => (
+          {answers.map((answer, index) => (
             <li key={answer.option}>
               {poll.voted || disableInputs ? (
-                <div className={`${animate.animated} ${animate.fadeIn} ${animate.faster} ${styles.result}`} style={{ color: colors[0], borderColor: colors[1] }}>
+                <div className={`${animate.animated} ${animate.fadeIn} ${animate.faster} ${styles.result}`} style={{ color: colors[0], borderColor: colors[1], backgroundColor: 'white' }}>
                   <div className={styles.fill} style={{ width: this.calculatePercent(answer.votes, totalVotes), backgroundColor: colors[2] }} />
-                  <div className={styles.labels}>
-                    <span className={styles.percent} style={{ color: colors[0] }}>{this.calculatePercent(answer.votes, totalVotes)}</span>
-                    <span className={`${styles.answer} ${answer.option === poll.option ? styles.vote : ''}`} style={{ color: colors[0], textAlign: 'right' }}>{answer.option}</span>
+                  <div className={styles.labels} style={{ width: '100%', display: 'flex', marginLeft: '-5px' }}>
+                    <span className={`${styles.answer} ${answer.option === poll.option ? styles.vote : ''}`} style={{ color: colors[0], flexGrow: '1', textAlign: 'left' }}>{answer.option}</span>
+                    <span className={styles.percent} style={{ color: colors[0], marginRight: '5px' }}>{this.calculatePercent(answer.votes, totalVotes)}</span>
                   </div>
                 </div>
               ) : (
-                <button className={`${animate.animated} ${animate.fadeIn} ${animate.faster} ${styles.option} ${styles[customStyles.theme]}`} style={{ color: colors[0], borderColor: colors[1], textAlign: 'left' }} type='button' onClick={() => this.vote(answer.option)}>
+                <button
+                  id={`button-${index}`}
+                  style={{ color: colors[0], borderColor: colors[1], textAlign: 'left', backgroundColor: 'white', height: '43px' }}
+                  className={`${animate.animated} ${animate.fadeIn} ${animate.faster} ${styles.option} ${styles[customStyles.theme]}`}
+                  type='button'
+                  onClick={() => this.vote(answer.option)}
+                  onMouseEnter={
+                    () => {
+                      document.getElementById(`button-${index}`).style.backgroundColor = 'rgba(255, 255, 0, 0.342)'
+                    }
+                  }
+                  onMouseLeave={
+                    () => {
+                      document.getElementById(`button-${index}`).style.backgroundColor = 'white'
+                    }
+                  }
+                >
                   {answer.option}
                 </button>
               )}
