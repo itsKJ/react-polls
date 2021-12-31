@@ -181,7 +181,8 @@ export default class Poll extends Component {
             </li>
           ))}
         </ul>
-        <p className={styles.votes}>{`${totalVotes} vote${totalVotes !== 1 ? 's' : ''}`}</p>
+        {/* <p className={styles.votes}>{`${totalVotes} vote${totalVotes !== 1 ? 's' : ''}`}</p> */}
+        <p className={styles.votes}>Votes : <span style={{ color: '#007bb2' }}>{totalVotes}</span></p>
       </article>
     )
   }
