@@ -158,7 +158,7 @@ export default class Poll extends Component {
           {question}
         </h3>
         <ul className={styles.answers}>
-          {answers.map((answer, index) => (
+          {answers.map(answer => (
             <li key={answer.option}>
               {poll.voted || disableInputs ? (
                 <div className={`${animate.animated} ${animate.fadeIn} ${animate.faster} ${styles.result}`} style={{ color: colors[0], borderColor: colors[1], backgroundColor: 'white' }}>
@@ -170,21 +170,10 @@ export default class Poll extends Component {
                 </div>
               ) : (
                 <button
-                  id={`button-${index}`}
-                  style={{ color: colors[0], borderColor: colors[1], textAlign: 'left', backgroundColor: 'white', height: '43px' }}
+                  style={{ borderColor: colors[1], textAlign: 'left', height: '43px' }}
                   className={`${animate.animated} ${animate.fadeIn} ${animate.faster} ${styles.option} ${styles[customStyles.theme]}`}
                   type='button'
                   onClick={() => this.vote(answer.option)}
-                  onMouseEnter={
-                    () => {
-                      document.getElementById(`button-${index}`).style.backgroundColor = 'rgba(255, 255, 0, 0.342)'
-                    }
-                  }
-                  onMouseLeave={
-                    () => {
-                      document.getElementById(`button-${index}`).style.backgroundColor = 'white'
-                    }
-                  }
                 >
                   {answer.option}
                 </button>
